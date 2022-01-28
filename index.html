@@ -7,45 +7,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        type="text/css">
-    <link rel="stylesheet" href="./assets/js/script.js" type="text/css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+        integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>Address App</title>
 </head>
 <body>
-
     <header>
-        <!-- top navbar -->
-        <nav class="light-blue darken-1">
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Address App</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand text-white" href="#">Address App</a>
+                <button class="bg-white" type="button"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false">
+                </button>
+                <div class="bg-dark">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="#">Home</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
-
-        <!-- mobile sidenav -->
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
-        </ul>
     </header>
 
-    <main class="container">
-        {% block content %}
-        {% endblock %} 
-    </main>
-
-    <footer class="page-footer blue darken-3">
-        <div class="footer-copyright">
-            <div class="container">
-                <a class="white-text right" href="https://codeinstitute.net" target="_blank">&copy; Address App</a>
+    <section class="container">
+        <h1>Contact List</h1>
+        <div class="cms-table-container">
+            <div class="cms-table-row">
+                <div class="cms-table-column cms-name cms-header">Name</div>
+                <div class="cms-table-column cms-phone cms-header">Phone</div>
+                <div class="cms-table-column cms-address cms-header">Address</div>
+                <div class="cms-table-column cms-header cms-add-entry-column" id="cmsAddNewEntry">+</div>
             </div>
+            <span id="tableBody"></span>
         </div>
-    </footer>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+        <div class="disable-modal" id="backdrop"></div>
+        <div class="disable-modal" id="newPersonModal">
+
+            <h1>Add New Person</h1>
+
+            <label for="newPersonName">Name</label>
+            <input type="text" id="newPersonName">
+
+            <label for="newPersonName">Phone</label>
+            <input type="text" id="newPersonPhone">
+
+            <label for="newPersonName">Address</label>
+            <input type="text" id="newPersonAddress">
+
+            <button id="newPersonCancelBtn">Cancel</button>
+            <button id="newPersonSubmitBtn">Submit</button>
+        </div>
+
+    </section>
+
+    <div class="footer-padding"></div>
+    <footer class="py-5 bg-dark" id="home-footer">
+      <div class="container">
+        <div class="row">
+          <p class="m-0 text-center text-white small">Copyright &copy; Address App</p>
+        </div>
+      </div>
+    </footer>    
+    <script src="script.js"></script>
 </body>
 </html>
