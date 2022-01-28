@@ -1,17 +1,120 @@
 .footer-padding {
-    padding-bottom: 2.5rem;
     padding-top: 4rem;
+    padding-bottom: 2.5rem;
 }
 
 #home-footer {
-    width: 100%;
-    position: absolute;
     bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 
 .csm-table-container {
-    font-size: 35px;
-    margin-top: 20px;
-    width: 80%;
     margin: auto;
+    width: 80%;
+    margin-top: 35px;
+    font-size: 20px;
+}
+
+.cms-table-row {
+    display: flex;
+}
+
+.cms-table-column {
+    white-space: nowrap;
+    padding: 15px;
+    margin: 2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+.cms-name {
+    flex-basis: 20%;
+}
+
+.cms-phone {
+    flex-basis: 20%;
+}
+
+.cms-address {
+    flex-basis: 20%;
+    flex-grow: 2;
+}
+
+.cms-header {
+    font-weight: bolder;
+    background-color: lightgrey;
+}
+
+.cms-edit, .cms-delete, .cms-add-entry-column {
+    cursor: pointer;
+    text-align: center;
+    flex-basis: 5%;
+}
+
+#newPersonModal {
+    z-index: 99;
+    margin-left: calc(50% - 250px);
+    padding: 10px;
+    position: absolute;
+    width: 500px;
+    top: 50px;
+    background-color: turquoise;
+    border-radius: 3px;
+}
+
+#newPersonModal input {
+    width: 100%;
+    border: 3px;
+    display: block;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.input-err {
+    background-color: red;
+}
+
+#backdrop {
+    z-index: 50;
+    background-color: darkblue;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#newPersonSubmitBtn {
+    background-color: lightblue;
+}
+
+#newPersonCancelBtn {
+    background-color: red;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    float: right;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 15px;
+}
+
+button:hover {
+    padding: 11px;
+}
+
+.disable-modal {
+    visibility: hidden;
+}
+
+.enable-modal {
+    visibility: visible;
+}
+
+i {
+    pointer-events: none;
 }

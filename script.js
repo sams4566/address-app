@@ -1,0 +1,1 @@
+const tableKey = 'cms-table';
