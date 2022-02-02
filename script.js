@@ -17,6 +17,15 @@ let cmsTableDemo = {
     }
 }
 
+let enableDisableNameInput = (option) => {
+    let newPersonName = document.getElementById('newPersonName')
+
+    if (option === 'enable')
+        newPersonName.disabled = false;
+    else if (option === 'disabled');
+        newPersonName.disabled = true;
+}
+
 let refreshDOMTable = () => {
     cmsTable = cmsTableDemo;
     let cmsTableKeys = Object.keys(cmsTable);
@@ -25,6 +34,7 @@ let refreshDOMTable = () => {
     tableContainer.removeChild(oldTableBody);
     let newTableBody = document.createElement('span');
     newTableBody.id = 'tableBody';
+    tableContainer.appendChild(newTableBody);
 
     for (let i = 0; i < cmsTableKeys.length; i++) {
         let currentRow = document.createElement('div');
@@ -110,8 +120,36 @@ let refreshDOMTable = () => {
         }
     });
 
+    newPersonCancelBtn.addEventListener('click', () => {
+        enableDisableNewUserModal('disable');
+    })
+
     addNewEntryBtn.addEventListener('click', () => {
         enableDisableNewUserModal('enable');
     });
+
+    for(let i = 0; i < editBtns.length; i++) {
+        editBtns[i].addEventListener('click', ($event) => {
+            let nameToEdit = $event.target.parentElement.children[0].innerText;
+            let personToEdit = cmsTable[nameToEdit];
+
+            enableDisableNewUserModal('enable');
+
+            let newPersonName = document.getElementById('newPersonName');
+            let newPersonPhone = document.getElementById('newPersonPhone');
+            let newPersonAddress = document.getElementById('newPersonAddress');
+
+            newPersonName.value = nameToEdit;
+            newPersonPhone.value = personToEdit.phone;
+            newPersonAddress.value = personToEdit.address;
+
+            enableDisableNameInput('disable');
+        })
+    }
+
+
 }
+
+
+
 refreshDOMTable();
