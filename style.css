@@ -118,3 +118,7 @@ button:hover {
 i {
     pointer-events: none;
 }
+
+.input-error {
+    background-color: red;
+}

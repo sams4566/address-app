@@ -1,10 +1,5 @@
 const tableKey = 'cms-table';
 
-let clearBtn = document.getElementById('clearBtn');
-clearBtn.addEventListener('click', () => {
-    localStorage.removeItem(tableKey);
-});
-
 let cmsTable;
 let cmsTableDemo = {
     'John Smith': {
@@ -27,7 +22,6 @@ let enableDisableNameInput = (option) => {
 }
 
 let refreshDOMTable = () => {
-    cmsTable = cmsTableDemo;
     let cmsTableKeys = Object.keys(cmsTable);
     let tableContainer = document.getElementById('cmsTableContainer');
     let oldTableBody = document.getElementById('tableBody');
@@ -94,19 +88,19 @@ let refreshDOMTable = () => {
         let newPersonAddress = document.getElementById('newPersonAddress').value.trim();
 
         if(newPersonName === '')
-            newPersonName.className = 'input-error';
+            document.getElementById('newPersonName').className = 'input-error';
         else
-            newPersonName.className = '';
+            document.getElementById('newPersonName').className = '';
 
         if(newPersonPhone === '')
-            newPersonPhone.className = 'input-error';
+            document.getElementById('newPersonPhone').className = 'input-error';
         else
-            newPersonPhone.className = '';
+            document.getElementById('newPersonPhone').className = '';
 
         if(newPersonAddress === '')
-            newPersonAddress.className = 'input-error';
+            document.getElementById('newPersonAddress').className = 'input-error';
         else
-            newPersonAddress.className = '';
+            document.getElementById('newPersonAddress').className = '';
 
         if(newPersonName !== '' && newPersonPhone !== '' && newPersonAddress !== '') {
             let newPerson = {};
@@ -147,9 +141,37 @@ let refreshDOMTable = () => {
         })
     }
 
-
+    for (let i = 0; i < deleteBtns.length; i++) {
+        deleteBtns[i].addEventListener('click', ($event) => {
+            let nameToDelete = $event.target.parentElement.children[0].innerText;
+            let isSure = window.confirm('Are you sure you want to delete ' + nameToDelete + '?');
+            if (isSure)
+                deleteUserFromTable(nameToDelete);
+        })
+    }
 }
 
+let deleteUserFromTable = (userName) => {
+    let tempTable = {};
+    let cmsTableKeys = Object.keys(cmsTable);
+    for(let i = 0; i < cmsTableKeys.length; i++) {
+        if(userName !== cmsTableKeys[i]) {
+            tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
+        }
+    }
+    cmsTable = tempTable;
+    localStorage.setItem(tableKey, JSON.stringify(cmsTable));
+    refreshDOMTable();
+}
 
+let init = () => {
+    if(localStorage.getItem(tableKey)) {
+        cmsTable = JSON.parse(localStorage.getItem(tableKey));
+    } else {
+        cmsTable = cmsTableDemo;
+        localStorage.setItem(tableKey, JSON.stringify(cmsTable));
+    }
+    refreshDOMTable();
+}
 
-refreshDOMTable();
+init();
