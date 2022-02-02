@@ -15,6 +15,7 @@
         referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://cdn.getaddress.io/scripts/getaddress-find-2.0.0.min.js"></script>
     <title>Address App</title>
 </head>
 <body>
@@ -61,9 +62,31 @@
             <label for="newPersonName">Address</label>
             <input type="text" id="newPersonAddress">
 
+            <!-- <div id="postcode_lookup"></div>   -->
+
+            <label for="newPersonName">First Address Line</label>
+            <input id="formatted_address_0" type="text"> 
+
+            <label for="newPersonName">Second Address Line</label>
+            <input id="formatted_address_1" type="text">   
+
+            <label for="newPersonName">Third Address Line</label>
+            <input id="formatted_address_2" type="text">  
+
+            <label for="newPersonName">Town</label>
+            <input id="formatted_address_3" type="text">
+
+            <label for="newPersonName">County</label>
+            <input id="formatted_address_4" type="text">
+
+            <label for="newPersonName">Postcode</label>
+            <input id="postcode" type="text">
+
             <button id="newPersonCancelBtn">Cancel</button>
             <button id="newPersonSubmitBtn">Submit</button>
         </div>
+
+        <button id="clearBtn" style="position: relative; right: 0px; bottom: 0px;">Clear Local Storage</button>
     </section>
 
     <div class="footer-padding"></div>
