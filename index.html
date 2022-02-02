@@ -20,83 +20,65 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark py-4">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand text-white" href="#">Address App</a>
-                <button class="bg-white" type="button"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false">
-                </button>
-                <div class="bg-dark">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page"
-                                href="#">Home</a></li>
-                    </ul>
-                </div>
+                <a class="navbar-brand text-white text-center title" href="#">Address App</a>
             </div>
         </nav>
     </header>
 
-    <section class="container">
-        <h1>Contact List</h1>
-        <div class="cms-table-container" id="cmsTableContainer">
-            <div class="cms-table-row">
-                <div class="cms-table-column cms-name cms-header">Name</div>
-                <div class="cms-table-column cms-phone cms-header">Phone</div>
-                <div class="cms-table-column cms-address cms-header">Address</div>
-                <div class="cms-table-column cms-header cms-add-entry-column" id="cmsAddNewEntry">+</div>
+    <section class="container pt-4 mb-5">
+        <div class="table-container" id="contactTableContainer">
+            <div class="table-row">
+                <div class="table-column name header bg-info">Name</div>
+                <div class="table-column phone header bg-info">Phone</div>
+                <div class="table-column address header bg-info">Address</div>
+                <div class="table-column header add-entry-column" id="contactAddNewEntry">+</div>
             </div>
             <span id="tableBody"></span>
         </div>
-        <div class="disable-modal" id="backdrop"></div>
-        <div class="disable-modal" id="newPersonModal">
+        <div class="disable-modal pb-5" id="backdrop"></div>
+        <div class="disable-modal pb-5" id="newPersonModal">
+            <div class="container mb-5">
 
-            <h1>Add New Person</h1>
+                <h1>Add New Person</h1>
 
-            <label for="newPersonName">Name</label>
-            <input type="text" id="newPersonName">
+                <label for="newPersonName">Name</label>
+                <input type="text" id="newPersonName">
 
-            <label for="newPersonName">Phone</label>
-            <input type="text" id="newPersonPhone">
+                <label for="newPersonName">Phone</label>
+                <input type="text" id="newPersonPhone">
 
-            <label for="newPersonName">Address</label>
-            <input type="text" id="newPersonAddress">
+                <label for="newPersonName">Address Lookup</label>
+                <div id="container_id" class="pb-3"></div>
 
-            <!-- <div id="postcode_lookup"></div>   -->
+                <label for="newPersonName">First Address Line</label>
+                <input id="formatted_address_0" type="text">
 
-            <label for="newPersonName">First Address Line</label>
-            <input id="formatted_address_0" type="text"> 
+                <label for="newPersonName">Second Address Line</label>
+                <input id="formatted_address_1" type="text">
 
-            <label for="newPersonName">Second Address Line</label>
-            <input id="formatted_address_1" type="text">   
+                <label for="newPersonName">Third Address Line</label>
+                <input id="formatted_address_2" type="text">
 
-            <label for="newPersonName">Third Address Line</label>
-            <input id="formatted_address_2" type="text">  
+                <label for="newPersonName">Town</label>
+                <input id="formatted_address_3" type="text">
 
-            <label for="newPersonName">Town</label>
-            <input id="formatted_address_3" type="text">
+                <label for="newPersonName">County</label>
+                <input id="formatted_address_4" type="text">
 
-            <label for="newPersonName">County</label>
-            <input id="formatted_address_4" type="text">
+                <label for="newPersonName">Postcode</label>
+                <input id="postcode" type="text">
 
-            <label for="newPersonName">Postcode</label>
-            <input id="postcode" type="text">
-
-            <button id="newPersonCancelBtn">Cancel</button>
-            <button id="newPersonSubmitBtn">Submit</button>
+                <button id="newPersonCancelBtn">Cancel</button>
+                <button id="newPersonSubmitBtn">Submit</button>
+            </div>
         </div>
-
-        <button id="clearBtn" style="position: relative; right: 0px; bottom: 0px;">Clear Local Storage</button>
+        
     </section>
-
-    <div class="footer-padding"></div>
-    <footer class="py-5 bg-dark" id="home-footer">
-      <div class="container">
-        <div class="row">
-          <p class="m-0 text-center text-white small">Copyright &copy; Address App</p>
-        </div>
-      </div>
-    </footer>    
     <script src="script.js"></script>
+    <script>
+        getAddress.find("container_id","Cy6cfBvPU028MJQLf9f8SQ34133");
+    </script>
 </body>
 </html>

@@ -1,16 +1,9 @@
-const tableKey = 'cms-table';
+const tableKey = 'table';
 
-let clearBtn = document.getElementById('clearBtn');
-clearBtn.addEventListener('click', () => {
-    localStorage.removeItem(tableKey);
-});
-
-
-let cmsTable;
-let cmsTableDemo = {
+let contactTable;
+let contactTableDemo = {
     'John Smith': {
         'phone': '0123456789',
-        'address': '123 Park Lane, London, UK, N1 2QQ',
         'address2': '123 Park Lane',
         'address3': '',
         'address4': '',
@@ -20,7 +13,6 @@ let cmsTableDemo = {
     },
     'Jeremy Jones': {
         'phone': '0323456789',
-        'address': '123 Oxford Street, London, UK, N2 2WW',
         'address2': '123 Oxford Street, London, UK, N2 2WW',
         'address3': '',
         'address4': '',
@@ -30,73 +22,48 @@ let cmsTableDemo = {
     }
 }
 
-let enableDisableNameInput = (option) => {
-    let newPersonName = document.getElementById('newPersonName')
-
-    if (option === 'enable')
-        newPersonName.disabled = false;
-    else if (option === 'disabled');
-        newPersonName.disabled = true;
-}
-
 let refreshDOMTable = () => {
-    // cmsTable = cmsTableDemo;
-    let cmsTableKeys = Object.keys(cmsTable);
-    let tableContainer = document.getElementById('cmsTableContainer');
+    // contactTable = contactTableDemo;
+    let contactTableKeys = Object.keys(contactTable);
+    let tableContainer = document.getElementById('contactTableContainer');
     let oldTableBody = document.getElementById('tableBody');
     tableContainer.removeChild(oldTableBody);
     let newTableBody = document.createElement('span');
     newTableBody.id = 'tableBody';
     tableContainer.appendChild(newTableBody);
 
-    for (let i = 0; i < cmsTableKeys.length; i++) {
+    for (let i = 0; i < contactTableKeys.length; i++) {
         let currentRow = document.createElement('div');
         let currentNameCol = document.createElement('div');
         let currentPhoneCol = document.createElement('div');
-        let currentAddressCol = document.createElement('div');
         let currentAddressCol2 = document.createElement('div');
-        let currentAddressCol3 = document.createElement('div');
-        let currentAddressCol4 = document.createElement('div');
         let currentAddressCol5 = document.createElement('div');
-        let currentAddressCol6 = document.createElement('div');
         let currentAddressCol7 = document.createElement('div');
         let currentEditBtn = document.createElement('div');
         let currentDeleteBtn = document.createElement('div');
 
-        currentRow.className = 'cms-table-row';
-        currentNameCol.className = 'cms-table-column cms-name';
-        currentPhoneCol.className = 'cms-table-column cms-phone';
-        currentAddressCol.className = 'cms-table-column cms-address';
-        currentAddressCol2.className = 'cms-table-column cms-address';
-        currentAddressCol3.className = 'cms-table-column cms-address';
-        currentAddressCol4.className = 'cms-table-column cms-address';
-        currentAddressCol5.className = 'cms-table-column cms-address';
-        currentAddressCol6.className = 'cms-table-column cms-address';
-        currentAddressCol7.className = 'cms-table-column cms-address';
-        currentEditBtn.className = 'cms-table-column cms-edit';
-        currentDeleteBtn.className = 'cms-table-column cms-delete';
+        currentRow.className = 'table-row';
+        currentNameCol.className = 'table-column name2';
+        currentPhoneCol.className = 'table-column phone2';
+        currentAddressCol2.className = 'table-column address';
+        currentAddressCol5.className = 'table-column address';
+        currentAddressCol7.className = 'table-column address';
+        currentEditBtn.className = 'table-column edit-contact';
+        currentDeleteBtn.className = 'table-column delete-contact';
 
-        currentNameCol.innerHTML = cmsTableKeys[i];
-        currentPhoneCol.innerHTML = cmsTable[cmsTableKeys[i]].phone;
-        currentAddressCol.innerHTML = cmsTable[cmsTableKeys[i]].address;
-        currentAddressCol2.innerHTML = cmsTable[cmsTableKeys[i]].address2;
-        currentAddressCol3.innerHTML = cmsTable[cmsTableKeys[i]].address3;
-        currentAddressCol4.innerHTML = cmsTable[cmsTableKeys[i]].address4;
-        currentAddressCol5.innerHTML = cmsTable[cmsTableKeys[i]].address5;
-        currentAddressCol6.innerHTML = cmsTable[cmsTableKeys[i]].address6;
-        currentAddressCol7.innerHTML = cmsTable[cmsTableKeys[i]].address7;
+        currentNameCol.innerHTML = contactTableKeys[i];
+        currentPhoneCol.innerHTML = contactTable[contactTableKeys[i]].phone;
+        currentAddressCol2.innerHTML = contactTable[contactTableKeys[i]].address2;
+        currentAddressCol5.innerHTML = contactTable[contactTableKeys[i]].address5;
+        currentAddressCol7.innerHTML = contactTable[contactTableKeys[i]].address7;
 
         currentEditBtn.innerHTML = '<i class="fas fa-edit"></i>'
         currentDeleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>'
 
         currentRow.appendChild(currentNameCol);
         currentRow.appendChild(currentPhoneCol);
-        currentRow.appendChild(currentAddressCol);
         currentRow.appendChild(currentAddressCol2);
-        currentRow.appendChild(currentAddressCol3);
-        currentRow.appendChild(currentAddressCol4);
         currentRow.appendChild(currentAddressCol5);
-        currentRow.appendChild(currentAddressCol6);
         currentRow.appendChild(currentAddressCol7);
         currentRow.appendChild(currentEditBtn);
         currentRow.appendChild(currentDeleteBtn);
@@ -106,7 +73,6 @@ let refreshDOMTable = () => {
     let enableDisableNewUserModal = (option) => {
         let newPersonName = document.getElementById('newPersonName');
         let newPersonPhone = document.getElementById('newPersonPhone');
-        let newPersonAddress = document.getElementById('newPersonAddress');
         let newPersonAddress2 = document.getElementById('formatted_address_0');
         let newPersonAddress3 = document.getElementById('formatted_address_1');
         let newPersonAddress4 = document.getElementById('formatted_address_2');
@@ -114,10 +80,8 @@ let refreshDOMTable = () => {
         let newPersonAddress6 = document.getElementById('formatted_address_4');
         let newPersonAddress7 = document.getElementById('postcode');
 
-
         newPersonName.value = '';
         newPersonPhone.value = '';
-        newPersonAddress.value = '';
         newPersonAddress2.value = '';
         newPersonAddress3.value = '';
         newPersonAddress4.value = '';
@@ -131,9 +95,9 @@ let refreshDOMTable = () => {
         newPersonModal.className = `${option}-modal`
         backdrop.className = `${option}-modal`
     }
-    let addNewEntryBtn = document.getElementById('cmsAddNewEntry');
-    let editBtns = document.getElementsByClassName('cms-edit');
-    let deleteBtns = document.getElementsByClassName('cms-delete');
+    let addNewEntryBtn = document.getElementById('contactAddNewEntry');
+    let editBtns = document.getElementsByClassName('edit-contact');
+    let deleteBtns = document.getElementsByClassName('delete-contact');
 
     let newPersonSubmitBtn = document.getElementById('newPersonSubmitBtn');
     let newPersonCancelBtn = document.getElementById('newPersonCancelBtn');
@@ -141,64 +105,17 @@ let refreshDOMTable = () => {
     newPersonSubmitBtn.addEventListener('click', () => {
         let newPersonName = document.getElementById('newPersonName').value.trim();
         let newPersonPhone = document.getElementById('newPersonPhone').value.trim();
-        let newPersonAddress = document.getElementById('newPersonAddress').value.trim();
         let newPersonAddress2 = document.getElementById('formatted_address_0').value.trim();
         let newPersonAddress3 = document.getElementById('formatted_address_1').value.trim();
         let newPersonAddress4 = document.getElementById('formatted_address_2').value.trim();
         let newPersonAddress5 = document.getElementById('formatted_address_3').value.trim();
         let newPersonAddress6 = document.getElementById('formatted_address_4').value.trim();
         let newPersonAddress7 = document.getElementById('postcode').value.trim();
-
-        if(newPersonName === '')
-            document.getElementById('newPersonName').className = 'input-error';
-        else
-            document.getElementById('newPersonName').className = '';
-
-        if(newPersonPhone === '')
-            document.getElementById('newPersonPhone').className = 'input-error';
-        else
-            document.getElementById('newPersonPhone').className = '';
-
-        if(newPersonAddress === '')
-            document.getElementById('newPersonAddress').className = 'input-error';
-        else
-            document.getElementById('newPersonAddress').className = '';
-
-        if(newPersonAddress2 === '')
-            document.getElementById('formatted_address_0').className = 'input-error';
-        else
-            document.getElementById('formatted_address_0').className = '';
-
-        if(newPersonAddress3 === '')
-            document.getElementById('formatted_address_1').className = 'input-error';
-        else
-            document.getElementById('formatted_address_1').className = '';
-
-        if(newPersonAddress4 === '')
-            document.getElementById('formatted_address_2').className = 'input-error';
-        else
-            document.getElementById('formatted_address_2').className = '';
-
-        if(newPersonAddress5 === '')
-            document.getElementById('formatted_address_3').className = 'input-error';
-        else
-            document.getElementById('formatted_address_3').className = '';
-
-        if(newPersonAddress6 === '')
-            document.getElementById('formatted_address_4').className = 'input-error';
-        else
-            document.getElementById('formatted_address_4').className = '';
-
-        if(newPersonAddress7 === '')
-            document.getElementById('postcode').className = 'input-error';
-        else
-            document.getElementById('postcode').className = '';
         
-        if(newPersonName !== '' && newPersonPhone !== '' && newPersonAddress !== '' && newPersonAddress2 !== '' && newPersonAddress3 !== '' && newPersonAddress4 !== '' && newPersonAddress5 !== '' && newPersonAddress6 !== '' && newPersonAddress7 !== '') {
+        if(newPersonName !== '' && newPersonPhone !== '' && newPersonAddress2 !== '' && newPersonAddress5 !== '' && newPersonAddress7 !== '') {
             let newPerson = {};
-            cmsTable[newPersonName] = {
+            contactTable[newPersonName] = {
                 'phone': newPersonPhone,
-                'address': newPersonAddress,
                 'address2': newPersonAddress2,
                 'address3': newPersonAddress3,
                 'address4': newPersonAddress4,
@@ -206,7 +123,7 @@ let refreshDOMTable = () => {
                 'address6': newPersonAddress6,
                 'address7': newPersonAddress7,
             }
-            localStorage.setItem(tableKey, JSON.stringify(cmsTable));
+            localStorage.setItem(tableKey, JSON.stringify(contactTable));
             enableDisableNewUserModal('disable');
             refreshDOMTable();
         }
@@ -223,13 +140,12 @@ let refreshDOMTable = () => {
     for(let i = 0; i < editBtns.length; i++) {
         editBtns[i].addEventListener('click', ($event) => {
             let nameToEdit = $event.target.parentElement.children[0].innerText;
-            let personToEdit = cmsTable[nameToEdit];
+            let personToEdit = contactTable[nameToEdit];
 
             enableDisableNewUserModal('enable');
 
             let newPersonName = document.getElementById('newPersonName');
             let newPersonPhone = document.getElementById('newPersonPhone');
-            let newPersonAddress = document.getElementById('newPersonAddress');
             let newPersonAddress2 = document.getElementById('formatted_address_0');
             let newPersonAddress3 = document.getElementById('formatted_address_1');
             let newPersonAddress4 = document.getElementById('formatted_address_2');
@@ -239,7 +155,6 @@ let refreshDOMTable = () => {
 
             newPersonName.value = nameToEdit;
             newPersonPhone.value = personToEdit.phone;
-            newPersonAddress.value = personToEdit.address;
             newPersonAddress2.value = personToEdit.address2;
             newPersonAddress3.value = personToEdit.address3;
             newPersonAddress4.value = personToEdit.address4;
@@ -247,7 +162,6 @@ let refreshDOMTable = () => {
             newPersonAddress6.value = personToEdit.address6;
             newPersonAddress7.value = personToEdit.address7;
 
-            enableDisableNameInput('disable');
         })
     }
 
@@ -263,23 +177,23 @@ let refreshDOMTable = () => {
 
 let deleteUserFromTable = (userName) => {
     let tempTable = {};
-    let cmsTableKeys = Object.keys(cmsTable);
-    for(let i = 0; i < cmsTableKeys.length; i++) {
-        if(userName !== cmsTableKeys[i]) {
-            tempTable[cmsTableKeys[i]] = cmsTable[cmsTableKeys[i]];
+    let contactTableKeys = Object.keys(contactTable);
+    for(let i = 0; i < contactTableKeys.length; i++) {
+        if(userName !== contactTableKeys[i]) {
+            tempTable[contactTableKeys[i]] = contactTable[contactTableKeys[i]];
         }
     }
-    cmsTable = tempTable;
-    localStorage.setItem(tableKey, JSON.stringify(cmsTable));
+    contactTable = tempTable;
+    localStorage.setItem(tableKey, JSON.stringify(contactTable));
     refreshDOMTable();
 }
 
 let init = () => {
     if(localStorage.getItem(tableKey)) {
-        cmsTable = JSON.parse(localStorage.getItem(tableKey));
+        contactTable = JSON.parse(localStorage.getItem(tableKey));
     } else {
-        cmsTable = cmsTableDemo;
-        localStorage.setItem(tableKey, JSON.stringify(cmsTable));
+        contactTable = contactTableDemo;
+        localStorage.setItem(tableKey, JSON.stringify(contactTable));
     }
     refreshDOMTable();
 }
