@@ -114,6 +114,11 @@ let contactTableDemo = {
     }
 }
 
+let clearBtn = document.getElementById('clearBtn');
+clearBtn.addEventListener('click', () => {
+    localStorage.removeItem(tableKey);
+});
+
 let refreshDOMTable = () => {
     contactTable = contactTableDemo;
     scroll(0,0)
