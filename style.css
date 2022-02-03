@@ -97,13 +97,16 @@ h1 {
 
 #newPersonModal {
     z-index: 99;
-    margin-left: calc(50% - 250px);
     padding: 10px;
     position: absolute;
     width: 500px;
-    top: 50px;
+    top: 100px;
     background-color: turquoise;
-    border-radius: 3px;
+    border-radius: 3px;   
+    float: left;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
 }
 
 #newPersonModal input {
