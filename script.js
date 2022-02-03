@@ -120,7 +120,7 @@ clearBtn.addEventListener('click', () => {
 });
 
 let refreshDOMTable = () => {
-    contactTable = contactTableDemo;
+    // contactTable = contactTableDemo;
     scroll(0,0)
     let contactTableKeys = Object.keys(contactTable);
     let tableContainer = document.getElementById('contactTableContainer');

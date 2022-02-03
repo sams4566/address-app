@@ -100,12 +100,11 @@ h1 {
     padding: 10px;
     position: absolute;
     width: 500px;
-    top: 100px;
     background-color: turquoise;
     border-radius: 3px;   
     float: left;
     left: 50%;
-    top: 80%;
+    top: 550px;
     transform: translate(-50%, -50%);
 }
 
