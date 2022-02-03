@@ -4,6 +4,7 @@ let contactTable;
 let contactTableDemo = {
     'John Smith': {
         'phone': '0123456789',
+        'email': 'john@gmail.com',
         'address2': '123 Park Lane',
         'address3': '',
         'address4': '',
@@ -13,6 +14,7 @@ let contactTableDemo = {
     },
     'Jeremy Jones': {
         'phone': '0323456789',
+        'email': 'jeremy@gmail.com',
         'address2': '123 Oxford Street, London, UK, N2 2WW',
         'address3': '',
         'address4': '',
@@ -24,6 +26,7 @@ let contactTableDemo = {
 
 let refreshDOMTable = () => {
     // contactTable = contactTableDemo;
+    scroll(0,0)
     let contactTableKeys = Object.keys(contactTable);
     let tableContainer = document.getElementById('contactTableContainer');
     let oldTableBody = document.getElementById('tableBody');
@@ -36,6 +39,7 @@ let refreshDOMTable = () => {
         let currentRow = document.createElement('div');
         let currentNameCol = document.createElement('div');
         let currentPhoneCol = document.createElement('div');
+        let currentEmailCol = document.createElement('div');
         let currentAddressCol2 = document.createElement('div');
         let currentAddressCol5 = document.createElement('div');
         let currentAddressCol7 = document.createElement('div');
@@ -45,6 +49,7 @@ let refreshDOMTable = () => {
         currentRow.className = 'table-row';
         currentNameCol.className = 'table-column name2';
         currentPhoneCol.className = 'table-column phone2';
+        currentEmailCol.className = 'table-column email2';
         currentAddressCol2.className = 'table-column address';
         currentAddressCol5.className = 'table-column address';
         currentAddressCol7.className = 'table-column address';
@@ -53,6 +58,7 @@ let refreshDOMTable = () => {
 
         currentNameCol.innerHTML = contactTableKeys[i];
         currentPhoneCol.innerHTML = contactTable[contactTableKeys[i]].phone;
+        currentEmailCol.innerHTML = contactTable[contactTableKeys[i]].email;
         currentAddressCol2.innerHTML = contactTable[contactTableKeys[i]].address2;
         currentAddressCol5.innerHTML = contactTable[contactTableKeys[i]].address5;
         currentAddressCol7.innerHTML = contactTable[contactTableKeys[i]].address7;
@@ -62,6 +68,7 @@ let refreshDOMTable = () => {
 
         currentRow.appendChild(currentNameCol);
         currentRow.appendChild(currentPhoneCol);
+        currentRow.appendChild(currentEmailCol);
         currentRow.appendChild(currentAddressCol2);
         currentRow.appendChild(currentAddressCol5);
         currentRow.appendChild(currentAddressCol7);
@@ -73,6 +80,7 @@ let refreshDOMTable = () => {
     let enableDisableNewUserModal = (option) => {
         let newPersonName = document.getElementById('newPersonName');
         let newPersonPhone = document.getElementById('newPersonPhone');
+        let newPersonEmail = document.getElementById('newPersonEmail');
         let newPersonAddress2 = document.getElementById('formatted_address_0');
         let newPersonAddress3 = document.getElementById('formatted_address_1');
         let newPersonAddress4 = document.getElementById('formatted_address_2');
@@ -82,6 +90,7 @@ let refreshDOMTable = () => {
 
         newPersonName.value = '';
         newPersonPhone.value = '';
+        newPersonEmail.value = '';
         newPersonAddress2.value = '';
         newPersonAddress3.value = '';
         newPersonAddress4.value = '';
@@ -105,6 +114,7 @@ let refreshDOMTable = () => {
     newPersonSubmitBtn.addEventListener('click', () => {
         let newPersonName = document.getElementById('newPersonName').value.trim();
         let newPersonPhone = document.getElementById('newPersonPhone').value.trim();
+        let newPersonEmail = document.getElementById('newPersonEmail').value.trim();
         let newPersonAddress2 = document.getElementById('formatted_address_0').value.trim();
         let newPersonAddress3 = document.getElementById('formatted_address_1').value.trim();
         let newPersonAddress4 = document.getElementById('formatted_address_2').value.trim();
@@ -112,10 +122,11 @@ let refreshDOMTable = () => {
         let newPersonAddress6 = document.getElementById('formatted_address_4').value.trim();
         let newPersonAddress7 = document.getElementById('postcode').value.trim();
         
-        if(newPersonName !== '' && newPersonPhone !== '' && newPersonAddress2 !== '' && newPersonAddress5 !== '' && newPersonAddress7 !== '') {
+        if(newPersonName !== '' && newPersonPhone !== '' && newPersonEmail !== '' && newPersonAddress2 !== '' && newPersonAddress5 !== '' && newPersonAddress7 !== '') {
             let newPerson = {};
             contactTable[newPersonName] = {
                 'phone': newPersonPhone,
+                'email': newPersonEmail,
                 'address2': newPersonAddress2,
                 'address3': newPersonAddress3,
                 'address4': newPersonAddress4,
@@ -146,6 +157,7 @@ let refreshDOMTable = () => {
 
             let newPersonName = document.getElementById('newPersonName');
             let newPersonPhone = document.getElementById('newPersonPhone');
+            let newPersonEmail = document.getElementById('newPersonEmail');
             let newPersonAddress2 = document.getElementById('formatted_address_0');
             let newPersonAddress3 = document.getElementById('formatted_address_1');
             let newPersonAddress4 = document.getElementById('formatted_address_2');
@@ -155,6 +167,7 @@ let refreshDOMTable = () => {
 
             newPersonName.value = nameToEdit;
             newPersonPhone.value = personToEdit.phone;
+            newPersonEmail.value = personToEdit.email;
             newPersonAddress2.value = personToEdit.address2;
             newPersonAddress3.value = personToEdit.address3;
             newPersonAddress4.value = personToEdit.address4;
